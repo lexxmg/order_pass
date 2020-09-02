@@ -1,0 +1,46 @@
+.title {
+  padding: 50px 0;
+
+  background-color: #ff8f00;
+
+  text-align: center;
+
+  color: white;
+}
+
+.form {
+  margin-top: 30px;
+}
+
+.form__name {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-name {
+
+}
+
+.form-name__lable {
+
+}
+
+.form-name__input {
+
+}
+
+.form-name__inner {
+
+}
+
+.form-name-inner {
+
+}
+
+.form-name-innet__label {
+
+}
+
+.form-name-inner__input {
+
+}

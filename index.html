@@ -9,12 +9,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/main.css">
 
     <script src="js/jQuery.js" defer></script>
     <script src="js/scripts.js" defer></script>
   </head>
 
   <body>
+    <main class="main">
+      <h1 class="title">Заказ пропусков</h1>
 
+      <div class="fixed-container">
+        <form class="form" action="">
+          <div class="form__name form-name">
+            <lable class="form-name__lable">Название компании
+              <input class="form-name__input" type="text" name="name">
+            </lable>
+
+            <div class="form-name__inner form-name-inner">
+              <label class="form-name-innet__label">Дата договора
+                <input class="form-name-inner__input" type="text" name="date">
+              </label>
+
+              <label class="form-name-innet__label">Номер договора
+                <input class="form-name-inner__input" type="text" name="contract">
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
   </body>
 </html>
