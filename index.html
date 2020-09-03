@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/button.css">
 
     <script src="js/jQuery.js" defer></script>
     <script src="js/scripts.js" defer></script>
@@ -21,21 +22,29 @@
 
       <div class="fixed-container">
         <form class="form" action="">
-          <div class="form__name form-name">
-            <lable class="form-name__lable">Название компании
-              <input class="form-name__input" type="text" name="name">
-            </lable>
+          <div class="form-croup-row">
+            <div class="input-container">
+              <input class="form__input" type="text" name="name" required>
+              <label class="form__label" >Название компании</label>
+              <span class="input-container__bar"></span>
+            </div>
 
-            <div class="form-name__inner form-name-inner">
-              <label class="form-name-innet__label">Дата договора
-                <input class="form-name-inner__input" type="text" name="date">
-              </label>
+            <div class="input-group">
+              <div class="input-container">
+                <input class="form__input" type="text" name="date" required>
+                <label class="form__label">Дата договора</label>
+                <span class="input-container__bar"></span>
+              </div>
 
-              <label class="form-name-innet__label">Номер договора
-                <input class="form-name-inner__input" type="text" name="contract">
-              </label>
+              <div class="input-container">
+                <input class="form__input" type="text" name="contract" required>
+                <label class="form__label">Номер договора</label>
+                <span class="input-container__bar"></span>
+              </div>
             </div>
           </div>
+
+          <button class="form__button button">Отправить</button>
         </form>
       </div>
     </main>

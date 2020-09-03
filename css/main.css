@@ -9,38 +9,110 @@
 }
 
 .form {
-  margin-top: 30px;
+  padding: 0 10px;
 }
 
-.form__name {
+.form-croup-row {
   display: flex;
   flex-direction: row;
+
+  margin-top: 50px;
 }
 
-.form-name {
+.input-container {
+  position: relative;
 
+  width: 100%;
+
+  margin-right: 10px;
+
+  border-bottom: 1px solid #999;
 }
 
-.form-name__lable {
+.input-group {
+  display: flex;
+  flex-direction: row;
 
+  width: 100%;
 }
 
-.form-name__input {
+.form__label {
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 10px;
 
+  color: #999;
+
+  pointer-events: none;
+
+  transition: .2s ease all;
 }
 
-.form-name__inner {
+.input-container__bar {
+  display: block;
+  position: relative;
 
+  width: 100%;
 }
 
-.form-name-inner {
+.input-container__bar::before, .input-container__bar::after {
+  content: "";
 
+  position: absolute;
+  top: 0;
+
+  width: 0;
+  height: 2px;
+
+  background-color: #ff8f00;
+
+  transition: .5s ease all;
 }
 
-.form-name-innet__label {
-
+.input-container__bar::before {
+  left: 50%;
 }
 
-.form-name-inner__input {
+.input-container__bar::after {
+  right: 50%;
+}
 
+.form__input:focus ~ .input-container__bar::before {
+  width: 50%;
+}
+
+.form__input:focus ~ .input-container__bar::after {
+  width: 50%;
+}
+
+.form__input {
+  display: block;
+
+  width: 100%;
+
+  padding: 10px;
+
+  background-color: transparent;
+
+  border: none;
+
+  outline: none;
+
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.form__input:focus ~ label, .form__input:valid ~ label {
+  top: -16px;
+  font-size: 14px;
+
+  color: black;
+}
+
+.form__button {
+  margin-top: 20px;
 }

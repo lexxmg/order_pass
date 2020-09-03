@@ -1,0 +1,28 @@
+.button {
+  display: block;
+
+  width: 200px;
+  height: 50px;
+
+  padding: 0;
+
+  background-color: transparent;
+
+  border: 1px solid black;
+
+  color: black;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: .15s all;
+}
+
+button:hover {
+  background-color: #ff8f00;
+
+  border: transparent;
+
+  color: white;
+}
