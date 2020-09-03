@@ -21,4 +21,9 @@ $.datepicker.setDefaults($.datepicker.regional['ru']);
 
 $(function(){
 	$('.form__input[name="date"]').datepicker();
+
+  $.mask.definitions['~'] = "[78]";
+  $('.form__input[name="tel"]').mask('+~ (999) 999-99-99');
+  $('.form__input[name="contract"]').mask('№ 9999999');
+  //$('.form__input[name="count"]').mask('99?');
 });
