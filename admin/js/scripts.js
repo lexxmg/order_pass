@@ -76,9 +76,11 @@ $(function() {
     if (event.target.className === 'buttons__del') {
       let firm = target.closest('.item__container').querySelector('.item__title').textContent;
 
-      $.get('http://192.168.0.15/order_pass/php/delete.php', {'firm': firm}, res => {
-        console.log(res);
-      }).done( () => target.closest('.list__item').remove());
+      if( confirm('Задача будет удалена') ) {
+        $.get('http://192.168.0.15/order_pass/php/delete.php', {'firm': firm}, res => {
+          console.log(res);
+        }).done( () => target.closest('.list__item').remove());
+      }
     }
 
     if (event.target.className === 'buttons__done') {
