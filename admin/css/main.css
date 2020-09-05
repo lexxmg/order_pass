@@ -1,0 +1,83 @@
+.main {
+
+}
+
+.title {
+  text-align: center;
+}
+
+.list {
+  margin-top: 50px;
+}
+
+.list__item {
+  margin-top: 5px;
+}
+
+.item {
+  display: block;
+  width: 100%;
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.item__container {
+
+}
+
+.item__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 5px 10px;
+
+  background-color: #fa311d;
+
+  color: white;
+}
+
+.item__top--done {
+  background-color: green;
+}
+
+.item__title {
+
+}
+
+.item__btn-close {
+
+}
+
+.item__body {
+  padding: 5px 10px;
+
+  background-color: #c1d2b5;
+}
+
+.item-body__container {
+
+}
+
+.item-body__item {
+
+}
+
+.item-body__buttons {
+
+}
+
+.buttons {
+
+}
+
+.buttons__done {
+
+}
+
+.buttons__del {
+
+}
