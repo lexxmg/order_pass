@@ -92,7 +92,7 @@ $(function() {
       console.log(firm);
     }
 
-    if (event.target.className === 'item__btn-close') {
+    if ( event.target.classList.contains('item__btn-close') ) {
       let el = target.closest('.item__top').nextElementSibling;
 
       $(el).slideToggle(1000);
