@@ -23,7 +23,7 @@ $(function() {
             <button class="item__btn-close">X</button>
           </div>
 
-          <div class="item__body item__body">
+          <div class="item__body item-body">
             <div class="item-body__container">
               <span class="item-body__item">Номер договора:</span>
               <span class="item-body__item">${obj.contract}</span>
@@ -84,8 +84,19 @@ $(function() {
     }
 
     if (event.target.className === 'buttons__done') {
-      let firm = target.closest('.list__item');
+      let firm = target.closest('.item__container').querySelector('.item__title').textContent;
+
+      $.get('http://192.168.0.15/order_pass/php/edit.php', {'firm': firm, 'done': true}, res => {
+        console.log(res);
+      });
       console.log(firm);
+    }
+
+    if (event.target.className === 'item__btn-close') {
+      let el = target.closest('.item__top').nextElementSibling;
+
+      $(el).slideToggle(1000);
+      console.log(el);
     }
   });
 });

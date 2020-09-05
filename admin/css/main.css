@@ -53,6 +53,8 @@
 }
 
 .item__body {
+  display: none;
+
   padding: 5px 10px;
 
   background-color: #c1d2b5;
