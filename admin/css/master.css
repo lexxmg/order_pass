@@ -17,7 +17,7 @@ body {
   min-width: 320px;               /* box-model */
   margin: 0;
 
-  background-color: #f9f9f9;       /* Визаулизация */
+  background-color: white;       /* Визаулизация */
 
   font-family: Roboto, Аrial, sans-serif;  /* Типография */
   font-size: 16px;

@@ -17,6 +17,15 @@
 .item {
   display: block;
   width: 100%;
+
+  background-color: #ED6C61;
+
+  border-radius: 10px;
+}
+
+.item--done {
+  background-color: #64C957;
+
 }
 
 .item__container {
@@ -27,20 +36,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   width: 100%;
 
   padding: 5px 10px;
 
-  background-color: #fa311d;
-
-  border-radius: 10px 10px 0 0;
-
   color: white;
-}
-
-.item__top--done {
-  background-color: green;
 }
 
 .item__title {
@@ -56,7 +58,7 @@
 
   padding: 5px 10px;
 
-  background-color: #c1d2b5;
+  background-color: #f6f6f6;
 
   border-radius: 0 0 10px 10px;
 }
@@ -70,7 +72,10 @@
 }
 
 .item-body__buttons {
+  display: flex;
+  flex-direction: row;
 
+  margin-top: 10px;
 }
 
 .buttons {
@@ -78,7 +83,7 @@
 }
 
 .buttons__done {
-
+  margin-left: 10px;
 }
 
 .buttons__del {

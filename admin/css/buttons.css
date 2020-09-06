@@ -1,0 +1,45 @@
+.btn {
+  display: block;
+
+  width: 100px;
+  height: 30px;
+
+  padding: 0;
+
+  background-color: #64C957;
+
+  border: 1px solid transparent;
+
+  border-radius: 10px;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.btn--red {
+  background-color: #ED6C61;
+}
+
+.btn-close {
+  display: block;
+
+  width: 25px;
+  height: 25px;
+
+  padding: 0;
+
+  background-color: #64C957;
+
+  border: 1px solid transparent;
+
+  border-radius: 50%;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}

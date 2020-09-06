@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/buttons.css">
 
     <script src="../js/jQuery.js" defer></script>
     <script src="js/scripts.js" defer></script>
@@ -25,10 +26,14 @@
               <div class="item__top">
                 <h2 class="item__title">Фирма</h2>
 
-                <button class="item__btn-close">X</button>
+                <button class="item__btn-close btn-close"
+                        aria-label="открыть"
+                        aria-expanded="false"
+                        aria-controls="list-data">X
+                </button>
               </div>
 
-              <div class="item__body item-body">
+              <div class="item__body item-body" id="list-data">
                 <div class="item-body__container">
                   <span class="item-body__item">Номер договора:</span>
                   <span class="item-body__item"></span>
@@ -65,8 +70,8 @@
                 </div>
 
                 <div class="item-body__buttons buttons">
-                  <button class="buttons__done">Сделано</button>
-                  <button class="buttons__del">Удалить</button>
+                  <button class="buttons__del btn btn--red">Удалить</button>
+                  <button class="buttons__done btn">Сделано</button>
                 </div>
               </div>
             </div>
