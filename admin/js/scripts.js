@@ -78,42 +78,46 @@ $(function() {
 
   list.on('click', event => {
     const target = event.target;
+    // const abonentCard = target.closest('.list__item');
+    // const abonentCardTitle = abonentCard.querySelector('.item__title');
+    // const abonentCardBody = abonentCard.querySelector('.item__body');
 
     if ( event.target.classList.contains('buttons__del') ) {
-      let firm = target.closest('.item__container').querySelector('.item__title').textContent;
+      const abonentCard = target.closest('.list__item');
+      const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const titleContent = abonentCardTitle.innerHTML;
+      const abonentCardBody = abonentCard.querySelector('.item__body');
 
       if( confirm('Задача будет удалена') ) {
-        $.get('/order_pass/php/delete.php', {'firm': firm}, res => {
-          console.log(res);
+        $.get('/order_pass/php/delete.php', {'firm': titleContent}, res => {
+          //console.log(res);
         }).done( () => {
-          const el = target.closest('.list__item');
-          $(el).fadeOut(600, "linear", () => {
-            el.remove();
+          $(abonentCard).fadeOut(600, () => {
+            abonentCard.remove();
           });
         });
       }
     }
 
     if ( event.target.classList.contains('buttons__done') ) {
-      let firm = target.closest('.item__container').querySelector('.item__title').textContent;
-      let el = target.closest('.list__item');
+      const abonentCard = target.closest('.list__item');
+      const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const titleContent = abonentCardTitle.textContent;
 
       $.getJSON('/order_pass/php/read.php', res => {
         for (let obj of res) {
-          if (obj.firm === firm) {
-            console.log(obj.firm);
-            console.log(obj.done);
+          if (obj.firm === titleContent) {
             if (obj.done === 'true') {
-              $.get('/order_pass/php/edit.php', {'firm': firm, 'done': false}, res => {
-                console.log(res);
+              $.get('/order_pass/php/edit.php', {'firm': titleContent, 'done': false}, res => {
+                //console.log(res);
               }).done(() => {
-                $(el).removeClass('item--done');
+                abonentCard.classList.remove('item--done');
               });
             } else {
-              $.get('/order_pass/php/edit.php', {'firm': firm, 'done': true}, res => {
-                console.log(res);
+              $.get('/order_pass/php/edit.php', {'firm': titleContent, 'done': true}, res => {
+                //console.log(res);
               }).done(() => {
-                $(el).addClass('item--done');
+                abonentCard.classList.add('item--done');
               });
             }
           }
@@ -122,14 +126,15 @@ $(function() {
     }
 
     if ( event.target.classList.contains('item__btn-close') ) {
-      let el = target.closest('.item__top').nextElementSibling;
+      const abonentCard = target.closest('.list__item');
+      const abonentCardBody = abonentCard.querySelector('.item__body')
 
       if ( $(target).attr('aria-expanded') === 'true') {
-        $(el).slideUp(400, () => {
+        $(abonentCardBody).slideUp(400, () => {
           $(target).attr('aria-expanded', 'false');
         });
       } else {
-        $(el).slideDown(400, () => {
+        $(abonentCardBody).slideDown(400, () => {
           $(target).attr('aria-expanded', 'true');
         });
       }
