@@ -2,7 +2,7 @@ $(function() {
 
   const list = $('.list');
 
-  $.getJSON('http://192.168.0.15/order_pass/php/read.php', res => {
+  $.getJSON('/order_pass/php/read.php', res => {
     console.log(res);
 
     for (let obj of res) {
@@ -19,6 +19,8 @@ $(function() {
         <div class="item__container">
           <div class="item__top">
             <h2 class="item__title">${obj.firm}</h2>
+
+            <time class="item__time">${obj.dat}</time>
 
             <button class="item__btn-close btn-close"
                     aria-label="открыть"
@@ -81,7 +83,7 @@ $(function() {
       let firm = target.closest('.item__container').querySelector('.item__title').textContent;
 
       if( confirm('Задача будет удалена') ) {
-        $.get('http://192.168.0.15/order_pass/php/delete.php', {'firm': firm}, res => {
+        $.get('/order_pass/php/delete.php', {'firm': firm}, res => {
           console.log(res);
         }).done( () => {
           const el = target.closest('.list__item');
@@ -96,19 +98,19 @@ $(function() {
       let firm = target.closest('.item__container').querySelector('.item__title').textContent;
       let el = target.closest('.list__item');
 
-      $.getJSON('http://192.168.0.15/order_pass/php/read.php', res => {
+      $.getJSON('/order_pass/php/read.php', res => {
         for (let obj of res) {
           if (obj.firm === firm) {
             console.log(obj.firm);
             console.log(obj.done);
             if (obj.done === 'true') {
-              $.get('http://192.168.0.15/order_pass/php/edit.php', {'firm': firm, 'done': false}, res => {
+              $.get('/order_pass/php/edit.php', {'firm': firm, 'done': false}, res => {
                 console.log(res);
               }).done(() => {
                 $(el).removeClass('item--done');
               });
             } else {
-              $.get('http://192.168.0.15/order_pass/php/edit.php', {'firm': firm, 'done': true}, res => {
+              $.get('/order_pass/php/edit.php', {'firm': firm, 'done': true}, res => {
                 console.log(res);
               }).done(() => {
                 $(el).addClass('item--done');

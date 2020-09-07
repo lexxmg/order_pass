@@ -17,7 +17,7 @@ $(function(){
     //console.log(this);
     //console.log($.(this));
 
-    $.post('http://192.168.0.15/order_pass/php/data-rec.php', data, res => {
+    $.post('/order_pass/php/data-rec.php', data, res => {
       alert(res);
     });
   });
