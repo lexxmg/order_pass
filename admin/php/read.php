@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 
 // $read = json_decode(file_get_contents("data.txt"), true);
 
@@ -13,7 +13,10 @@ header('Access-Control-Allow-Origin: *');
 // 	}
 // 	echo "<br>";
 // }
-
-echo file_get_contents("data.txt");
+if ( $_SERVER['REMOTE_ADDR'] == '192.168.5.72' ) {
+  echo file_get_contents("data.txt");
+} else {
+  echo "err";
+}
 
 ?>
