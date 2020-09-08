@@ -11,7 +11,7 @@ $(function() {
 
   $.getJSON('php/read.php', res => {
     console.log(res);
-    console.log(oftype res);
+    console.log(typeof res);
 
     for (let obj of res) {
       let done;
