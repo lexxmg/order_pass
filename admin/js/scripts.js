@@ -33,7 +33,7 @@ $(function() {
             <button class="item__btn-close btn-close"
                     aria-label="открыть"
                     aria-expanded="false"
-                    aria-controls="list-data">X
+                    aria-controls="list-data">
             </button>
           </div>
 
