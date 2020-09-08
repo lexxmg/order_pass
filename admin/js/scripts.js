@@ -84,7 +84,7 @@ $(function() {
     }
 
     if (list.children().length > 1) {
-      listEmpty.remote();
+      listEmpty.remove();
     }
   });
 
