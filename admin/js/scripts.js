@@ -11,6 +11,7 @@ $(function() {
 
   $.getJSON('php/read.php', res => {
     console.log(res);
+    console.log(oftype res);
 
     for (let obj of res) {
       let done;
@@ -80,6 +81,10 @@ $(function() {
         </div>
       </li>
       `);
+    }
+
+    if (list.children().length > 1) {
+      listEmpty.remote();
     }
   });
 
