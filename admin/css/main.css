@@ -8,6 +8,7 @@
 
 .list {
   margin-top: 50px;
+  padding: 0 5px;
 }
 
 .list__item {
@@ -100,7 +101,7 @@
 
 }
 
-@media (max-width: 414px) {
+@media (max-width: 580px) {
   .item__title {
     font-size: 20px;
   }
