@@ -49,6 +49,12 @@
 
 }
 
+.item__title--list-none {
+  text-align: center;
+
+  color: white;
+}
+
 .item__btn-close {
 
 }

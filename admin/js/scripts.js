@@ -2,6 +2,13 @@ $(function() {
 
   const list = $('.list');
 
+  const listEmpty = $(`
+                      <li class="list__item item ">
+                        <h2 class="item__title item__title--list-none">Список пуст</h2>
+                      </li>
+                    `);
+
+
   $.getJSON('php/read.php', res => {
     console.log(res);
 
@@ -76,6 +83,10 @@ $(function() {
     }
   });
 
+  if (list.children().length === 0) {
+    list.prepend(listEmpty);
+  }
+
   list.on('click', event => {
     const target = event.target;
     // const abonentCard = target.closest('.list__item');
@@ -94,6 +105,10 @@ $(function() {
         }).done( () => {
           $(abonentCard).fadeOut(600, () => {
             abonentCard.remove();
+
+            if (list.children().length === 0) {
+              list.prepend(listEmpty);
+            }
           });
         });
       }
