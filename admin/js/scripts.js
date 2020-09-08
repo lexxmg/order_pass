@@ -150,10 +150,12 @@ $(function() {
       const abonentCardBody = abonentCard.querySelector('.item__body')
 
       if ( $(target).attr('aria-expanded') === 'true') {
+        $(target).removeClass('rotate');
         $(abonentCardBody).slideUp(400, () => {
           $(target).attr('aria-expanded', 'false');
         });
       } else {
+        $(target).addClass('rotate');
         $(abonentCardBody).slideDown(400, () => {
           $(target).attr('aria-expanded', 'true');
         });
