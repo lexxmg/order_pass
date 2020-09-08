@@ -17,7 +17,7 @@ $(function(){
     //console.log(this);
     //console.log($.(this));
 
-    $.post('/order_pass/php/data-rec.php', data, res => {
+    $.post('data-rec.php', data, res => {
       alert(res);
     });
   });

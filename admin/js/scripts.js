@@ -2,7 +2,7 @@ $(function() {
 
   const list = $('.list');
 
-  $.getJSON('/order_pass/php/read.php', res => {
+  $.getJSON('admin/php/order_pass/php/read.php', res => {
     console.log(res);
 
     for (let obj of res) {
@@ -89,7 +89,7 @@ $(function() {
       const abonentCardBody = abonentCard.querySelector('.item__body');
 
       if( confirm('Задача будет удалена') ) {
-        $.get('/order_pass/php/delete.php', {'firm': titleContent}, res => {
+        $.get('admin/php/order_pass/php/delete.php', {'firm': titleContent}, res => {
           //console.log(res);
         }).done( () => {
           $(abonentCard).fadeOut(600, () => {
@@ -104,7 +104,7 @@ $(function() {
       const abonentCardTitle = abonentCard.querySelector('.item__title');
       const titleContent = abonentCardTitle.textContent;
 
-      $.getJSON('/order_pass/php/read.php', res => {
+      $.getJSON('admin/php/order_pass/php/read.php', res => {
         for (let obj of res) {
           if (obj.firm === titleContent) {
             if (obj.done === 'true') {
@@ -114,7 +114,7 @@ $(function() {
                 abonentCard.classList.remove('item--done');
               });
             } else {
-              $.get('/order_pass/php/edit.php', {'firm': titleContent, 'done': true}, res => {
+              $.get('admin/php/order_pass/php/edit.php', {'firm': titleContent, 'done': true}, res => {
                 //console.log(res);
               }).done(() => {
                 abonentCard.classList.add('item--done');
