@@ -13,8 +13,9 @@ $(function(){
   form.on('submit', event => {
     event.preventDefault();
 
-    const data = form.serialize();
-    //console.log(this);
+    const data = form.serializeArray();
+    data.push({name: 'key', value: 'passs'});
+    console.log(data);
     //console.log($.(this));
 
     $.post('data-rec.php', data, res => {
