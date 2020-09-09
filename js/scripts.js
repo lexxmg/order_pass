@@ -1,5 +1,7 @@
 $(function(){
-  const form = $('.form');
+  const form = $('.form'),
+        btn = $('.form__button');
+
 
   form.on('focusout', event => {
     const target = event.target;
@@ -13,6 +15,8 @@ $(function(){
   form.on('submit', event => {
     event.preventDefault();
 
+    btn.attr('disabled', true);
+
     const data = form.serializeArray();
     data.push({name: 'key', value: 'passs'});
     //console.log(data);
@@ -21,6 +25,7 @@ $(function(){
     $.post('data-rec.php', data, res => {
       alert(res);
       form[0].reset();
+      btn.attr('disabled', false);
     });
   });
 
