@@ -54,7 +54,12 @@ $(function(){
 	$('.form__input[name="date"]').datepicker();
 
   $.mask.definitions['~'] = "[78]";
+  //$.mask.definitions['%'] = '[А-Я]?';
+
   $('.form__input[name="tel"]').mask('+~ (999) 999-99-99');
-  $('.form__input[name="contract"]').mask('№ 9999999');
+
+  // if (valid) {
+  //   $('.form__input[name="contract"]').mask('-999999/99-99');
+  // }
   //$('.form__input[name="count"]').mask('99?');
 });
