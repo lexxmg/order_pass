@@ -19,6 +19,12 @@
   transition: .15s all;
 }
 
+.button[disabled] {
+  opacity: .5;
+
+  pointer-events: none;
+}
+
 .button:hover {
   background-color: #ff8f00;
 
