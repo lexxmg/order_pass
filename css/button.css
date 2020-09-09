@@ -19,7 +19,15 @@
   transition: .15s all;
 }
 
-button:hover {
+.button:hover {
+  background-color: #ff8f00;
+
+  border: transparent;
+
+  color: white;
+}
+
+.button:focus {
   background-color: #ff8f00;
 
   border: transparent;

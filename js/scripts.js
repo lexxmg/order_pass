@@ -20,6 +20,7 @@ $(function(){
 
     $.post('data-rec.php', data, res => {
       alert(res);
+      form.reset();
     });
   });
 
