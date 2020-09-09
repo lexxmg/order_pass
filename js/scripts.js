@@ -15,12 +15,12 @@ $(function(){
 
     const data = form.serializeArray();
     data.push({name: 'key', value: 'passs'});
-    console.log(data);
+    //console.log(data);
     //console.log($.(this));
 
     $.post('data-rec.php', data, res => {
       alert(res);
-      form.reset();
+      form[0].reset();
     });
   });
 
