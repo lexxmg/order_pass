@@ -6,7 +6,7 @@ $(function(){
   form.on('focusout', event => {
     const target = event.target;
     const valid = target.validity.valid;
-
+    
     if (!valid) {
       target.value = '';
     }
@@ -14,13 +14,22 @@ $(function(){
 
   form.on('submit', event => {
     event.preventDefault();
+    const target = event.target;
+
+    if ( !isNumber(target.count.value) ) {
+      alert('ввидите число');
+      target.count.value = '';
+      return;
+    } else if (target.count.value > 30) {
+      alert('не больше 30');
+      target.count.value = '';
+      return;
+    }
 
     btn.attr('disabled', true);
 
     const data = form.serializeArray();
     data.push({name: 'key', value: 'passs'});
-    //console.log(data);
-    //console.log($.(this));
 
     $.post('data-rec.php', data, res => {
       alert(res);
@@ -63,3 +72,7 @@ $(function(){
   // }
   //$('.form__input[name="count"]').mask('99?');
 });
+
+function isNumber(n) {
+  return !isNaN( parseFloat(n) ) && isFinite(n);
+}
