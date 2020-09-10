@@ -1,0 +1,67 @@
+.btn {
+  display: block;
+
+  width: 100px;
+  height: 30px;
+
+  padding: 0;
+
+  background-color: #64C957;
+
+  border: 1px solid transparent;
+
+  border-radius: 10px;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.btn--red {
+  background-color: #ED6C61;
+}
+
+.btn-close {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 25%;
+  height: 30px;
+
+  padding: 0;
+
+  background-color: transparent;
+
+  border: none;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.btn-close::before {
+  content: "";
+
+  display: block;
+  width: 25px;
+  height: 25px;
+
+  background-image: url(../../img/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  transform: rotate(-90deg);
+
+  transition: transform .4s;
+}
+
+.rotate.btn-close::before {
+  transform: rotate(0);
+}
