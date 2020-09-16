@@ -23,9 +23,25 @@ if ($_POST['key'] == 'passs') {
   //echo json_encode($read);
   //echo file_get_contents("data.txt");
   echo "Заявка получена";
+
+  $token = "805763562:AAG4vUINnaMxsnHfmWK37k0XzCbWK9iT72g";
+  $chat_id = "-403442959";
+
+  $arr = array(
+    'Фирма: ' => $_POST['firm'],
+    'Количество пропусков: ' => $_POST['count']
+  );
+
+  foreach($arr as $key => $value) {
+    $txt .= "<b>".$key."</b> ".$value."%0A";
+  };
+
+  $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+
 } else {
   echo "error";
 }
+
 //==================================================================================================
 
 ?>
