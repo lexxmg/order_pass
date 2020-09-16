@@ -24,15 +24,15 @@ $(function(){
 
     $.post('data-rec.php', data, res => {
       if (res === 'ok') {
-        alert('Заявка успешно получена');
+        popup('Заявка успешно получена');
         form[0].reset();
         btn.attr('disabled', false);
       } else if (res == 'err') {
-        alert('Ошибка сервера, повторите попытку');
+        popup('Ошибка сервера, повторите попытку');
         btn.attr('disabled', false);
       }
     }).fail( () => {
-      alert('Сервер не отвечает');
+      popup('Сервер не отвечает');
       btn.attr('disabled', false);
     });
   });
@@ -70,4 +70,35 @@ $(function(){
   //   $('.form__input[name="contract"]').mask('-999999/99-99');
   // }
   //$('.form__input[name="count"]').mask('99?');
+
+
 });
+
+function popup(text) {
+  const div = document.createElement('div');
+
+  div.innerHTML = `
+    <div class="popup-container">
+      <div class="popup-container__inner">
+        <h3 class="popup-container__title">${text}</h3>
+
+        <button class="popup-container__btn btn-close-popup"
+                aria-label="закрыть">
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.append(div);
+
+  const btnClose = document.querySelector('.popup-container__btn');
+  console.log(btnClose);
+
+  btnClose.addEventListener('click', () => {
+    div.remove();
+  });
+
+  setTimeout( () => {
+    div.remove();
+  }, 3000);
+}
