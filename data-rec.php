@@ -22,7 +22,7 @@ if ($_POST['key'] == 'passs') {
   file_put_contents("admin/php/data.txt", json_encode($read, JSON_UNESCAPED_UNICODE));
   //echo json_encode($read);
   //echo file_get_contents("data.txt");
-  echo "Заявка получена";
+  echo "ok";
 
   $token = "805763562:AAG4vUINnaMxsnHfmWK37k0XzCbWK9iT72g";
   $chat_id = "-403442959";
@@ -39,7 +39,7 @@ if ($_POST['key'] == 'passs') {
   $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
 
 } else {
-  echo "error";
+  echo "err";
 }
 
 //==================================================================================================

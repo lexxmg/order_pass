@@ -23,8 +23,16 @@ $(function(){
     //console.log($.(this));
 
     $.post('data-rec.php', data, res => {
-      alert(res);
-      form[0].reset();
+      if (res === 'ok') {
+        alert('Заявка успешна получена');
+        form[0].reset();
+        btn.attr('disabled', false);
+      } else if (res == 'err') {
+        alert('Ошибка сервера, повторите попытку');
+        btn.attr('disabled', false);
+      }
+    }).fail( () => {
+      alert('Сервер не отвечает');
       btn.attr('disabled', false);
     });
   });
