@@ -19,21 +19,22 @@ $(function(){
 
     const data = form.serializeArray();
     data.push({name: 'key', value: 'passs'});
-    //console.log(data);
-    //console.log($.(this));
 
     $.post('data-rec.php', data, res => {
       if (res === 'ok') {
-        popup('Заявка успешно получена', 3000);
-        form[0].reset();
-        btn.attr('disabled', false);
+        popup('Заявка успешно получена', 3000, () => {
+          form[0].reset();
+          btn.attr('disabled', false);
+        });
       } else if (res == 'err') {
-        popup('Ошибка сервера, повторите попытку', 3000);
-        btn.attr('disabled', false);
+        popup('Ошибка сервера, повторите попытку', 3000, () => {
+          btn.attr('disabled', false);
+        });
       }
     }).fail( () => {
-      popup('Сервер не отвечает', 3000);
-      btn.attr('disabled', false);
+      popup('Сервер не отвечает', 3000, () => {
+        btn.attr('disabled', false);
+      });
     });
   });
 
@@ -70,11 +71,9 @@ $(function(){
   //   $('.form__input[name="contract"]').mask('-999999/99-99');
   // }
   //$('.form__input[name="count"]').mask('99?');
-
-
 });
 
-function popup(text, time) {
+function popup(text, time, collback) {
   scrollOff(true);
   const div = document.createElement('div');
 
@@ -91,9 +90,17 @@ function popup(text, time) {
   `;
 
   div.addEventListener('click', (event) => {
-    if ( event.target.classList.contains('popup-container__btn') ) {
+    const target = event.target;
+    if ( target.classList.contains('popup-container__btn') ) {
       div.remove();
       scrollOff(false);
+      collback();
+    }
+
+    if ( !target.closest('.popup-container__inner') ) {
+      div.remove();
+      scrollOff(false);
+      collback();
     }
   });
 
@@ -103,6 +110,7 @@ function popup(text, time) {
     setTimeout( () => {
       div.remove();
       scrollOff(false);
+      collback();
     }, time);
   }
 }

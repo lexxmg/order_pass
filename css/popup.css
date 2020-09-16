@@ -34,6 +34,11 @@
   border: 2px solid #ff8f00;
 
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  opacity: 1;
+
+  transition: all 1s;
 }
 
 .popup-container__title {
