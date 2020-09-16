@@ -24,7 +24,7 @@ $(function(){
 
     $.post('data-rec.php', data, res => {
       if (res === 'ok') {
-        alert('Заявка успешна получена');
+        alert('Заявка успешно получена');
         form[0].reset();
         btn.attr('disabled', false);
       } else if (res == 'err') {
