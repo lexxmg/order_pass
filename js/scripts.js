@@ -24,15 +24,15 @@ $(function(){
 
     $.post('data-rec.php', data, res => {
       if (res === 'ok') {
-        popup('Заявка успешно получена');
+        popup('Заявка успешно получена', 3000);
         form[0].reset();
         btn.attr('disabled', false);
       } else if (res == 'err') {
-        popup('Ошибка сервера, повторите попытку');
+        popup('Ошибка сервера, повторите попытку', 3000);
         btn.attr('disabled', false);
       }
     }).fail( () => {
-      popup('Сервер не отвечает');
+      popup('Сервер не отвечает', 3000);
       btn.attr('disabled', false);
     });
   });
@@ -74,7 +74,8 @@ $(function(){
 
 });
 
-function popup(text) {
+function popup(text, time) {
+  scrollOff(true);
   const div = document.createElement('div');
 
   div.innerHTML = `
@@ -89,16 +90,33 @@ function popup(text) {
     </div>
   `;
 
-  document.body.append(div);
-
-  const btnClose = document.querySelector('.popup-container__btn');
-  console.log(btnClose);
-
-  btnClose.addEventListener('click', () => {
-    div.remove();
+  div.addEventListener('click', (event) => {
+    if ( event.target.classList.contains('popup-container__btn') ) {
+      div.remove();
+      scrollOff(false);
+    }
   });
 
-  setTimeout( () => {
-    div.remove();
-  }, 3000);
+ document.body.append(div);
+
+  if (time) {
+    setTimeout( () => {
+      div.remove();
+      scrollOff(false);
+    }, time);
+  }
+}
+
+function scrollOff(bul) {
+  const width = document.documentElement.clientWidth;
+  if (bul) {
+    document.documentElement.style.overflow = 'hidden';
+    if (width !== document.documentElement.clientWidth) {
+      const padding = document.documentElement.clientWidth - width;
+      document.body.style.paddingRight = padding + 'px';
+    }
+  } else {
+    document.documentElement.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }
 }
