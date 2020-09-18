@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 try {
   $(function(){
     const form = $('.form'),
@@ -135,7 +135,7 @@ try {
   alert('В этом браузере сайт работает не корректно!!!' + ' ' + e);
 }
 
-
+*/
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 
@@ -145,11 +145,16 @@ const form = document.querySelector('.form');
 
 let formData = new FormData(form);
 
-console.log( encodeURIComponent('Какие то расские буквы "ООО" \'ООО\' ') );
-
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  let formData = encodeURIComponent('?firm=' + form.firm.value + '&date=' + form.date.value);
+  let formData = '?firm=' + encodeURIComponent(form.firm.value) +
+                  '&date=' + encodeURIComponent(form.date.value) +
+                  '&contract=' + encodeURIComponent(form.contract.value) +
+                  '&fio=' + encodeURIComponent(form.fio.value) +
+                  '&email=' + encodeURIComponent(form.email.value) +
+                  '&tel=' + encodeURIComponent(form.tel.value) +
+                  '&count=' + encodeURIComponent(form.count.value);
+
   console.log( formData );
 });
