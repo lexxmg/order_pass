@@ -143,18 +143,34 @@ try {
 
 const form = document.querySelector('.form');
 
-let formData = new FormData(form);
+//let formData = new FormData(form);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  let formData = '?firm=' + encodeURIComponent(form.firm.value) +
-                  '&date=' + encodeURIComponent(form.date.value) +
-                  '&contract=' + encodeURIComponent(form.contract.value) +
-                  '&fio=' + encodeURIComponent(form.fio.value) +
-                  '&email=' + encodeURIComponent(form.email.value) +
-                  '&tel=' + encodeURIComponent(form.tel.value) +
-                  '&count=' + encodeURIComponent(form.count.value);
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://192.168.0.15/echo.php');
+
+  xhr.addEventListener('readystatechange', () => {
+    if (xhr.redyState != 4) return;
+
+    console.log(xhr.responseText);
+  });
+
+
+  let formData = '?';
+
+  for (var i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].name !== '') {
+      console.log(form.elements[i].name + ' ' + form.elements[i].value);
+      formData += form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value) + '&';
+    }
+  }
+
+  formData += 'name=key&value=passs';
+
+  xhr.send(formData);
+
 
   console.log( formData );
 });
