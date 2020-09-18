@@ -147,22 +147,24 @@ const form = document.querySelector('.form');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  console.log(this);
 
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'http://192.168.0.15/echo.php');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhr.addEventListener('readystatechange', () => {
-    if (xhr.redyState != 4) return;
+    //if (xhr.redyState != 4) return;
+    console.log(xhr.redyState);
 
     console.log(xhr.responseText);
   });
 
 
-  let formData = '?';
+  let formData = '';
 
   for (var i = 0; i < form.elements.length; i++) {
     if (form.elements[i].name !== '') {
-      console.log(form.elements[i].name + ' ' + form.elements[i].value);
       formData += form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value) + '&';
     }
   }
@@ -172,5 +174,5 @@ form.addEventListener('submit', (event) => {
   xhr.send(formData);
 
 
-  console.log( formData );
+  //console.log( formData );
 });
