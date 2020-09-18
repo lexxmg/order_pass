@@ -134,3 +134,22 @@ try {
 } catch(e) {
   alert('В этом браузере сайт работает не корректно!!!' + ' ' + e);
 }
+
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+
+'use strict';
+
+const form = document.querySelector('.form');
+
+let formData = new FormData(form);
+
+console.log( encodeURIComponent('Какие то расские буквы "ООО" \'ООО\' ') );
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let formData = encodeURIComponent('?firm=' + form.firm.value + '&date=' + form.date.value);
+  console.log( formData );
+});
