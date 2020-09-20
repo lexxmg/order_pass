@@ -148,11 +148,10 @@ let formData = new FormData(form);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log(this);
 
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'http://192.168.0.15/echo.php');
-  xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhr.addEventListener('readystatechange', () => {
     //if (xhr.redyState != 4) return;
@@ -161,19 +160,17 @@ form.addEventListener('submit', (event) => {
     console.log(xhr.responseText);
   });
 
-  //
-  // let formData = '';
-  //
-  // for (var i = 0; i < form.elements.length; i++) {
-  //   if (form.elements[i].name !== '') {
-  //     formData += form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value) + '&';
-  //   }
-  // }
-  //
-  // formData += 'name=key&value=passs';
+  let arr = [];
 
-  xhr.send(formData);
+  for (var i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].type !== 'submit') {
+      arr[i] = form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value);
+    }
+  }
 
+  arr.push('key'+ '=' + 'passs');
 
-  //console.log( formData );
+  xhr.send(arr.join('&'));
+
+  console.log( arr.join('&') );
 });
