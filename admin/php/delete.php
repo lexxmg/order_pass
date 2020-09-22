@@ -2,7 +2,7 @@
 
 //header('Access-Control-Allow-Origin: *');
 //header('Content-Type: text/html; charset=UTF-8');
-if ( $_SERVER['REMOTE_ADDR'] == '192.168.5.72' ) {
+if ( $_SERVER['REMOTE_ADDR'] == '185.35.160.71' ) {
 
 	$read = json_decode(file_get_contents("data.txt"), true);
 
@@ -11,14 +11,12 @@ if ( $_SERVER['REMOTE_ADDR'] == '192.168.5.72' ) {
 	// print_r($read[2]);
 
 	for ($i = 0; $i < count($read); $i++) {
-		foreach ($read[$i] as $key => $value) {
-		 	if ($value == $_GET['firm']) {
-		 		// print_r($read[$i]);
-		 		// $read[$i]["contract"] = 'new';
-		 		// print_r($read[$i]);
-		 		unset($read[$i]);
-		 	}
-		}
+	 	if ($read[$i]['firm'] == $_GET['firm'] && $read[$i]['dat'] == $_GET['dat']) {
+	 		// print_r($read[$i]);
+	 		// $read[$i]["contract"] = 'new';
+	 		// print_r($read[$i]);
+	 		unset($read[$i]);
+	 	}
 	}
 	$read = array_values($read);
 

@@ -3,14 +3,12 @@
 //header('Access-Control-Allow-Origin: *');
 
 //header('Content-Type: text/html; charset=UTF-8');
-if ( $_SERVER['REMOTE_ADDR'] == '192.168.5.72' ) {
+if ( $_SERVER['REMOTE_ADDR'] == '185.35.160.71' ) {
 	$read = json_decode(file_get_contents("data.txt"), true);
 
 	for ($i = 0; $i < count($read); $i++) {
-		foreach ($read[$i] as $key => $value) {
-		 	if ($value == $_GET['firm']) {
-		 		$read[$i]["done"] = $_GET['done'];
-		 	}
+		if ($read[$i]['firm'] == $_GET['firm'] && $read[$i]['dat'] == $_GET['dat']) {
+		 	$read[$i]["done"] = $_GET['done'];
 		}
 	}
 

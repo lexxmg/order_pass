@@ -49,7 +49,7 @@ $(function() {
             </div>
 
             <div class="item-body__container">
-              <span class="item-body__item">ФИО руководителя:</span>
+              <span class="item-body__item">ФИО контактного лица:</span>
               <span class="item-body__item">${obj.fio}</span>
             </div>
 
@@ -101,11 +101,13 @@ $(function() {
     if ( event.target.classList.contains('buttons__del') ) {
       const abonentCard = target.closest('.list__item');
       const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const abonentCardDate = abonentCard.querySelector('.item__time');
       const titleContent = abonentCardTitle.innerHTML;
+      const dateContent = abonentCardDate.innerHTML;
       const abonentCardBody = abonentCard.querySelector('.item__body');
 
       if( confirm('Задача будет удалена') ) {
-        $.get('php/delete.php', {'firm': titleContent}, res => {
+        $.get('php/delete.php', {'firm': titleContent, 'dat': dateContent}, res => {
           //console.log(res);
         }).done( () => {
           $(abonentCard).fadeOut(600, () => {
@@ -122,19 +124,22 @@ $(function() {
     if ( event.target.classList.contains('buttons__done') ) {
       const abonentCard = target.closest('.list__item');
       const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const abonentCardDate = abonentCard.querySelector('.item__time');
       const titleContent = abonentCardTitle.textContent;
+      const dateContent = abonentCardDate.innerHTML;
+
 
       $.getJSON('php/read.php', res => {
         for (let obj of res) {
           if (obj.firm === titleContent) {
             if (obj.done === 'true') {
-              $.get('php/edit.php', {'firm': titleContent, 'done': false}, res => {
+              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': false}, res => {
                 //console.log(res);
               }).done(() => {
                 abonentCard.classList.remove('item--done');
               });
             } else {
-              $.get('php/edit.php', {'firm': titleContent, 'done': true}, res => {
+              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': true}, res => {
                 //console.log(res);
               }).done(() => {
                 abonentCard.classList.add('item--done');
