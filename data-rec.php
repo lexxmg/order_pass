@@ -24,8 +24,8 @@ if ($_POST['key'] == 'passs') {
   //echo file_get_contents("data.txt");
   echo "ok";
 
-  $token = "805763562:AAG4vUINnaMxsnHfmWK37k0XzCbWK9iT72g";
-  $chat_id = "-403442959";
+  $token = "";
+  $chat_id = "";
 
   $arr = array(
     'Фирма: ' => $_POST['firm'],
