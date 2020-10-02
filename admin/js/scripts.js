@@ -10,8 +10,8 @@ $(function() {
 
 
   $.getJSON('php/read.php', res => {
-    console.log(res);
-    console.log(typeof res);
+    //console.log(res);
+    //console.log(typeof res);
 
     for (let obj of res) {
       let done;
@@ -146,8 +146,10 @@ $(function() {
               });
 
               if ( confirm('Отправить оповещение?') ) {
-                $.get('php/send.php', {'firm': titleContent, 'dat': dateContent}, (res) => {});
-              }.done( () => alert('Сообщение отправлено.' + res) );
+                $.get('php/send.php', {'firm': titleContent, 'dat': dateContent}, (res) => {
+                  console.log(res);
+                }).done( () => alert('Сообщение отправлено.') );
+              }
             }
           }
         }

@@ -9,7 +9,7 @@ if ( $_SERVER['REMOTE_ADDR'] == '185.35.160.71' ) {
 	for ($i = 0; $i < count($read); $i++) {
 		if ($read[$i]['firm'] == $_GET['firm'] && $read[$i]['dat'] == $_GET['dat']) {
 		 	//$read[$i]["done"] = $_GET['done'];
-      echo $read[i]['email'];
+      echo $read[$i]['email'];
 		}
 	}
 
