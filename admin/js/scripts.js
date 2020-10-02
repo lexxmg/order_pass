@@ -131,7 +131,7 @@ $(function() {
 
       $.getJSON('php/read.php', res => {
         for (let obj of res) {
-          if (obj.firm === titleContent) {
+          if (obj.firm === titleContent && obj.dat === dateContent) {
             if (obj.done === 'true') {
               $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': false}, res => {
                 //console.log(res);
@@ -144,6 +144,10 @@ $(function() {
               }).done(() => {
                 abonentCard.classList.add('item--done');
               });
+
+              if ( confirm('Отправить оповещение?') ) {
+                $.get('php/send.php', {'firm': titleContent, 'dat': dateContent}, (res) => {});
+              }.done( () => alert('Сообщение отправлено.' + res) );
             }
           }
         }
