@@ -1,0 +1,79 @@
+/*============================================================*/
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  overflow: auto;
+
+  width: 100%;
+  min-width: 320px;               /* box-model */
+  margin: 0;
+
+  background-color: #f9f9f9;       /* Визаулизация */
+
+  font-family: Roboto, Аrial, sans-serif;  /* Типография */
+  font-size: 16px;
+  line-height: 1.429;
+  color: black;
+}
+
+button {
+  outline: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, p, figure {
+  padding: 0;
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fixed-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.off-scroll {
+  overflow: hidden;
+}
+
+/*============================================================*/

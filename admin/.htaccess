@@ -1,0 +1,4 @@
+order deny,allow
+deny from all
+#Список IP, с которых доступ разрешен
+allow from 185.35.160.71
