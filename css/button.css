@@ -19,10 +19,104 @@
   transition: .15s all;
 }
 
+<<<<<<< HEAD
 button:hover {
+=======
+.button:disabled {
+  opacity: .5;
+
+  /* pointer-events: none; */
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+>>>>>>> send
   background-color: #ff8f00;
 
   border: transparent;
 
   color: white;
 }
+<<<<<<< HEAD
+=======
+
+.button:focus {
+  background-color: #ff8f00;
+
+  border: transparent;
+
+  color: white;
+}
+
+.btn-close-popup {
+  position: relative;
+
+  display: block;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  background: white;
+
+  border: 1px solid tomato;
+  border-radius: 50%;
+
+  outline: none;
+}
+
+.btn-close-popup::after {
+  content: "";
+
+  position: absolute;
+  top: 13px;
+  left: 2px;
+
+  width: 24px;
+  height: 2px;
+
+  background-color: tomato;
+
+  transform: rotate(45deg);
+}
+
+.btn-close-popup::before {
+  content: "";
+
+  position: absolute;
+  top: 13px;
+  left: 2px;
+
+  width: 24px;
+  height: 2px;
+
+  background-color: tomato;
+
+  transform: rotate(-45deg);
+}
+
+.btn-close-popup:hover {
+  background-color: tomato;
+}
+
+.btn-close-popup:hover::after {
+  background-color: white;
+}
+
+.btn-close-popup:hover::before {
+  background-color: white;
+}
+
+.btn-close-popup:focus {
+  background-color: tomato;
+}
+
+.btn-close-popup:focus::after {
+  background-color: white;
+}
+
+.btn-close-popup:focus::before {
+  background-color: white;
+}
+>>>>>>> send
