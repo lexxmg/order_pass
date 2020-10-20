@@ -1,7 +1,8 @@
 $(function() {
 
-  const list = $('.list');
-  const form = $('form');
+  const list = $('.list'),
+        form = $('.form'),
+        input = $('.form__item');
 
   const listEmpty = $(`
                       <li class="list__item item ">
@@ -11,7 +12,7 @@ $(function() {
   let responce;
 
   form.on('input', () => {
-      searchObj =  search(form.find('input').val(), responce);
+      searchObj = search(input.val(), responce);
       list.html('');
 
       createUserCard(list, searchObj);
@@ -91,6 +92,7 @@ $(function() {
                 });
               }).done(() => {
                 abonentCard.classList.add('item--done');
+                abonentCard.classList.remove('item--duplicate');
               });
 
               if ( confirm('Отправить оповещение?') ) {
@@ -126,7 +128,7 @@ $(function() {
     arrObj = [];
 
     for (let obj of arr) {
-      if ( obj.firm.toLowerCase().search( search.toLowerCase() ) >= 0) {
+      if ( obj.firm.toLowerCase().search( search.toLowerCase() ) >= 0 ) {
         arrObj.push(obj);
       }
     }
@@ -137,16 +139,19 @@ $(function() {
 
     for (let obj of searchObj) {
       let done;
+      let duplicate = '';
 
       if (obj.done === 'true') {
         done = 'item--done';
       } else {
         done = '';
-        isDuplicateName(searchObj, obj.firm);
+        if ( isDuplicateName(searchObj, obj.firm) ) {
+          duplicate = 'item--duplicate';
+        }
       }
 
       list.prepend(`
-      <li class="list__item item ${done}">
+      <li class="list__item item ${done} ${duplicate}">
         <div class="item__container">
           <div class="item__top">
             <h2 class="item__title">${obj.firm}</h2>
@@ -212,14 +217,19 @@ $(function() {
     let firm;
 
     for (let obj of arr) {
-      if (obj.firm === name) {
+      let aName = obj.firm.toLowerCase().search( name.toLowerCase() );
+      let bName = name.toLowerCase().search( obj.firm.toLowerCase() );
+
+      if (aName >= 0 || bName >=0 ) {
         count++;
         firm = obj.firm;
       }
     }
 
     if (count > 1) {
-      console.log(firm + ' ' + 'duplicate');
+      return true;
+    } else {
+      return false;
     }
   }
 });

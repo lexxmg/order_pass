@@ -6,8 +6,34 @@
   text-align: center;
 }
 
+.wrapper-form {
+  margin-top: 30px;
+  padding: 0 5px;
+}
+
+.form {
+ width: 100%;
+
+ border: 2px solid #64C957;
+ border-radius: 10px;
+}
+
+.form__item {
+  width: 100%;
+
+  padding: 4px;
+
+  border: none;
+  border-radius: inherit;
+
+  outline: none;
+
+  font-size: 1.5em;
+  text-align: center;
+}
+
 .list {
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 0 5px;
 }
 
@@ -27,6 +53,10 @@
 .item--done {
   background-color: #64C957;
 
+}
+
+.item--duplicate {
+  background-color: #b810ac;
 }
 
 .item__container {
