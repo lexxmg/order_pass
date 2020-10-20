@@ -142,6 +142,7 @@ $(function() {
         done = 'item--done';
       } else {
         done = '';
+        isDuplicateName(searchObj, obj.firm);
       }
 
       list.prepend(`
@@ -203,6 +204,20 @@ $(function() {
         </div>
       </li>
       `);
+    }
+  }
+
+  function isDuplicateName(arr, name) {
+    let count = 0;
+
+    for (let obj of arr) {
+      if (obj.firm === name) {
+        count++;
+      }
+    }
+
+    if (count > 1) {
+      console.log(obj.firm + ' ' + 'duplicate');
     }
   }
 });
