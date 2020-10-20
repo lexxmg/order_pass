@@ -209,15 +209,17 @@ $(function() {
 
   function isDuplicateName(arr, name) {
     let count = 0;
+    let firm;
 
     for (let obj of arr) {
       if (obj.firm === name) {
         count++;
+        firm = obj.firm;
       }
     }
 
     if (count > 1) {
-      console.log(obj.firm + ' ' + 'duplicate');
+      console.log(firm + ' ' + 'duplicate');
     }
   }
 });
