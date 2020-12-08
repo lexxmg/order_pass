@@ -1,29 +1,157 @@
 $(function() {
 
-  const list = $('.list');
+  const list = $('.list'),
+        form = $('.form'),
+        input = $('.form__item');
 
   const listEmpty = $(`
                       <li class="list__item item ">
                         <h2 class="item__title item__title--list-none">Список пуст</h2>
                       </li>
                     `);
+  let responce;
 
+  form.on('input', () => {
+      searchObj = search(input.val(), responce);
+      list.html('');
+
+      createUserCard(list, searchObj);
+  });
 
   $.getJSON('php/read.php', res => {
-    //console.log(res);
-    //console.log(typeof res);
+    responce = res;
 
-    for (let obj of res) {
+    createUserCard(list, responce);
+
+    if (list.children().length > 1) {
+      listEmpty.remove();
+    }
+  });
+
+  if (list.children().length === 0) {
+    list.prepend(listEmpty);
+  }
+
+  list.on('click', event => {
+    const target = event.target;
+    // const abonentCard = target.closest('.list__item');
+    // const abonentCardTitle = abonentCard.querySelector('.item__title');
+    // const abonentCardBody = abonentCard.querySelector('.item__body');
+
+    if ( event.target.classList.contains('buttons__del') ) {
+      const abonentCard = target.closest('.list__item');
+      const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const abonentCardDate = abonentCard.querySelector('.item__time');
+      const titleContent = abonentCardTitle.innerHTML;
+      const dateContent = abonentCardDate.innerHTML;
+      const abonentCardBody = abonentCard.querySelector('.item__body');
+
+      if( confirm('Задача будет удалена') ) {
+        $.get('php/delete.php', {'firm': titleContent, 'dat': dateContent}, res => {
+          //console.log(res);
+          $.getJSON('php/read.php', res => {
+            responce = res;
+          });
+        }).done( () => {
+          $(abonentCard).fadeOut(600, () => {
+            abonentCard.remove();
+
+            if (list.children().length === 0) {
+              list.prepend(listEmpty);
+            }
+          });
+        });
+      }
+    }
+
+    if ( event.target.classList.contains('buttons__done') ) {
+      const abonentCard = target.closest('.list__item');
+      const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const abonentCardDate = abonentCard.querySelector('.item__time');
+      const titleContent = abonentCardTitle.textContent;
+      const dateContent = abonentCardDate.innerHTML;
+
+
+      $.getJSON('php/read.php', res => {
+        for (let obj of res) {
+          if (obj.firm === titleContent && obj.dat === dateContent) {
+            if (obj.done === 'true') {
+              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': false}, res => {
+                //console.log(res);
+                $.getJSON('php/read.php', res => {
+                  responce = res;
+                });
+              }).done(() => {
+                abonentCard.classList.remove('item--done');
+              });
+            } else {
+              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': true}, res => {
+                //console.log(res);
+                $.getJSON('php/read.php', res => {
+                  responce = res;
+                });
+              }).done(() => {
+                abonentCard.classList.add('item--done');
+                abonentCard.classList.remove('item--duplicate');
+              });
+
+              if ( confirm('Отправить оповещение?') ) {
+                $.get('php/send.php', {'firm': titleContent, 'dat': dateContent}, (res) => {
+                  console.log(res);
+                }).done( () => alert('Сообщение отправлено.') );
+              }
+            }
+          }
+        }
+      });
+    }
+
+    if ( event.target.classList.contains('item__btn-close') ) {
+      const abonentCard = target.closest('.list__item');
+      const abonentCardBody = abonentCard.querySelector('.item__body')
+
+      if ( $(target).attr('aria-expanded') === 'true') {
+        $(target).removeClass('rotate');
+        $(abonentCardBody).slideUp(400, () => {
+          $(target).attr('aria-expanded', 'false');
+        });
+      } else {
+        $(target).addClass('rotate');
+        $(abonentCardBody).slideDown(400, () => {
+          $(target).attr('aria-expanded', 'true');
+        });
+      }
+    }
+  });
+
+  function search(search, arr) {
+    arrObj = [];
+
+    for (let obj of arr) {
+      if ( obj.firm.toLowerCase().search( search.toLowerCase() ) >= 0 ) {
+        arrObj.push(obj);
+      }
+    }
+    return arrObj;
+  }
+
+  function createUserCard(list, searchObj) {
+
+    for (let obj of searchObj) {
       let done;
+      let duplicate = '';
 
       if (obj.done === 'true') {
         done = 'item--done';
       } else {
         done = '';
+        if ( isDuplicateName(searchObj, obj.firm) ) {
+          duplicate = 'item--duplicate';
+        }
       }
 
       list.prepend(`
-      <li class="list__item item ${done}">
+      <li class="list__item item ${done} ${duplicate}">
         <div class="item__container">
           <div class="item__top">
             <h2 class="item__title">${obj.firm}</h2>
@@ -82,95 +210,26 @@ $(function() {
       </li>
       `);
     }
-
-    if (list.children().length > 1) {
-      listEmpty.remove();
-    }
-  });
-
-  if (list.children().length === 0) {
-    list.prepend(listEmpty);
   }
 
-  list.on('click', event => {
-    const target = event.target;
-    // const abonentCard = target.closest('.list__item');
-    // const abonentCardTitle = abonentCard.querySelector('.item__title');
-    // const abonentCardBody = abonentCard.querySelector('.item__body');
+  function isDuplicateName(arr, name) {
+    let count = 0;
+    let firm;
 
-    if ( event.target.classList.contains('buttons__del') ) {
-      const abonentCard = target.closest('.list__item');
-      const abonentCardTitle = abonentCard.querySelector('.item__title');
-      const abonentCardDate = abonentCard.querySelector('.item__time');
-      const titleContent = abonentCardTitle.innerHTML;
-      const dateContent = abonentCardDate.innerHTML;
-      const abonentCardBody = abonentCard.querySelector('.item__body');
+    for (let obj of arr) {
+      let aName = obj.firm.toLowerCase().search( name.toLowerCase() );
+      let bName = name.toLowerCase().search( obj.firm.toLowerCase() );
 
-      if( confirm('Задача будет удалена') ) {
-        $.get('php/delete.php', {'firm': titleContent, 'dat': dateContent}, res => {
-          //console.log(res);
-        }).done( () => {
-          $(abonentCard).fadeOut(600, () => {
-            abonentCard.remove();
-
-            if (list.children().length === 0) {
-              list.prepend(listEmpty);
-            }
-          });
-        });
+      if (aName >= 0 || bName >=0 ) {
+        count++;
+        firm = obj.firm;
       }
     }
 
-    if ( event.target.classList.contains('buttons__done') ) {
-      const abonentCard = target.closest('.list__item');
-      const abonentCardTitle = abonentCard.querySelector('.item__title');
-      const abonentCardDate = abonentCard.querySelector('.item__time');
-      const titleContent = abonentCardTitle.textContent;
-      const dateContent = abonentCardDate.innerHTML;
-
-
-      $.getJSON('php/read.php', res => {
-        for (let obj of res) {
-          if (obj.firm === titleContent && obj.dat === dateContent) {
-            if (obj.done === 'true') {
-              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': false}, res => {
-                //console.log(res);
-              }).done(() => {
-                abonentCard.classList.remove('item--done');
-              });
-            } else {
-              $.get('php/edit.php', {'firm': titleContent, 'dat': dateContent, 'done': true}, res => {
-                //console.log(res);
-              }).done(() => {
-                abonentCard.classList.add('item--done');
-              });
-
-              if ( confirm('Отправить оповещение?') ) {
-                $.get('php/send.php', {'firm': titleContent, 'dat': dateContent}, (res) => {
-                  console.log(res);
-                }).done( () => alert('Сообщение отправлено.') );
-              }
-            }
-          }
-        }
-      });
+    if (count > 1) {
+      return true;
+    } else {
+      return false;
     }
-
-    if ( event.target.classList.contains('item__btn-close') ) {
-      const abonentCard = target.closest('.list__item');
-      const abonentCardBody = abonentCard.querySelector('.item__body')
-
-      if ( $(target).attr('aria-expanded') === 'true') {
-        $(target).removeClass('rotate');
-        $(abonentCardBody).slideUp(400, () => {
-          $(target).attr('aria-expanded', 'false');
-        });
-      } else {
-        $(target).addClass('rotate');
-        $(abonentCardBody).slideDown(400, () => {
-          $(target).attr('aria-expanded', 'true');
-        });
-      }
-    }
-  });
+  }
 });
