@@ -19,7 +19,33 @@
     <main class="main">
       <h1 class="title">Список заявок</h1>
 
+      <div class="main__info main-info fixed-container">
+        <div class="main-info__item">
+          <div class="main-info__color"></div>
+
+          <span class="main-info__name">Выполнено</span>
+        </div>
+
+        <div class="main-info__item">
+          <div class="main-info__color"></div>
+
+          <span class="main-info__name">Не выполнено</span>
+        </div>
+
+        <div class="main-info__item">
+          <div class="main-info__color"></div>
+
+          <span class="main-info__name">Не выполнено, есть в базе</span>
+        </div>
+      </div>
+
       <div class="fixed-container">
+        <div class="wrapper-form">
+          <form class="form">
+            <input class="form__item" type="text" name="search" placeholder="Поиск">
+          </form>
+        </div>
+
         <ul class="list"></ul>
       </div>
     </main>
