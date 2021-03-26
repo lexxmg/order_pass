@@ -65,3 +65,9 @@
 .rotate.btn-close::before {
   transform: rotate(0);
 }
+
+.btn--blue {
+  width: 130px;
+
+  background-color: blue;
+}

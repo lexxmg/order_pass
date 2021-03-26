@@ -122,6 +122,19 @@ $(function() {
         });
       }
     }
+
+    if ( event.target.classList.contains('buttons__block') ) {
+      const abonentCard = target.closest('.list__item');
+      const abonentCardTitle = abonentCard.querySelector('.item__title');
+      const titleContent = abonentCardTitle.textContent;
+
+      if ( confirm('отправить сообщение о блокировке?') ) {
+        console.log('запрос на сервер' + titleContent);
+        $.get('php/block.php', {'firm': titleContent}, (res) => {
+          console.log(res);
+        }).done( () => alert('Сообщение отправлено.') );
+      }
+    }
   });
 
   function search(search, arr) {
@@ -204,6 +217,10 @@ $(function() {
             <div class="item-body__buttons buttons">
               <button class="buttons__del btn btn--red">Удалить</button>
               <button class="buttons__done btn">Сделано</button>
+
+              <div class="buttons__inner">
+                <button class="buttons__block btn btn--blue">Заблокировать</button>
+              </div>
             </div>
           </div>
         </div>

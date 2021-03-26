@@ -1,4 +1,4 @@
-main {
+.main {
 
 }
 
@@ -170,6 +170,23 @@ main {
 .buttons__del {
 
 }
+
+.buttons__inner {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+
+.buttons__block {
+
+}
+
+.btn--blue {
+
+}
+
+
 
 @media (max-width: 580px) {
   .item__title {
